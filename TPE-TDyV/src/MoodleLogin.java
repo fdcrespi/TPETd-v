@@ -15,11 +15,8 @@ public class MoodleLogin {
 		WebDriverWait wait = new WebDriverWait(driver, 4000);
 		WebElement userButton = (WebElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
 		userButton.sendKeys(username);
-		//userButton.submit();
 		WebElement passwordButton = (WebElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password")));
 		passwordButton.sendKeys(password);
-		//passwordButton.submit();
-
 		WebElement IngresarButton = (WebElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"boxForm\"]/div/form[1]/div[3]/button")));
 		IngresarButton.click();
 	}

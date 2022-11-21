@@ -32,26 +32,19 @@ public class Moodle {
 	@Test (priority=2)
 	public void login() {
 		MoodleLogin logInMoodle = PageFactory.initElements(driver, MoodleLogin.class);
-		logInMoodle.login("35334185", "Fede1810");
+		logInMoodle.login("35334185", "Fede18101");
 		WebDriverWait wait = new WebDriverWait(driver, 4000);
-		WebElement userButton = (WebElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("action-menu-toggle-1")));
-		userButton.click();
-		wait = new WebDriverWait(driver, 4000);
-		WebElement userName = (WebElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("actionmenuaction-1")));
-		System.out.println(userName.getText());
-		Assert.assertTrue(userName.getText().equals(user));
+		if (driver.getCurrentUrl().equals("https://moodle.exa.unicen.edu.ar/my/")) {
+			WebElement userButton = (WebElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("action-menu-toggle-1")));
+			userButton.click();
+			wait = new WebDriverWait(driver, 4000);
+			WebElement userName = (WebElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("actionmenuaction-1")));
+			System.out.println(userName.getText());
+			Assert.assertTrue(userName.getText().equals(user));
+		} else {
+			System.out.println("Error en usuario y contraseña");
+		}
 	}
-
-	/*
-	@Test (priority=3)
-	public void searchProduct() {
-		MercadoLibreBuscarProducto mercadolibrebuscar = PageFactory.initElements(driver, MercadoLibreBuscarProducto.class);
-		mercadolibrebuscar.search("GPU");
-		String textoAbuscar="Placa de video Nvidia MSI Ventus GeForce RTX 30 Series RTX 3080 Ti GEFORCE RTX 3080 Ti VENTUS 3X 12G OC OC Edition 12GB";
-		mercadolibrebuscar.sacarCookies();
-		mercadolibrebuscar.scrollear(textoAbuscar);
-	}
-	*/
 	
 	@Test (priority=4)
 	public void finishTest() {
